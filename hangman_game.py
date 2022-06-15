@@ -1,4 +1,6 @@
 import random
+import os
+
 
 def get_work():
     """
@@ -20,7 +22,13 @@ def hangman_game(word):
         if not letter_index_dict.get(letter):
             letter_index_dict[letter] = []
         letter_index_dict[letter].append(idx) # Se crea un diccionario que contiene como llaves las letra de la palabra y como valor el indice.
-   
+
+    while True:
+        os.system('cls')  
+        print('Guess the word....')
+        for element in chosen_word_list_underscore:
+            print(element + ' ', end='')
+        print("\n")
    
 
 def run():
