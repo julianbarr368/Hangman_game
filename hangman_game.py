@@ -1,4 +1,3 @@
-from curses.ascii import isalpha
 import random
 
 def get_work():
@@ -11,10 +10,17 @@ def get_work():
         DATA = [i for i in f ]
     word = random.choice(DATA)
     return word.upper().strip()
-    
 
 
-# def hangman_game(word):
+def hangman_game(word):
+    chosen_word_list = [letter for letter in word] # se crea una lista de la palabra.
+    chosen_word_list_underscore = [' _ '] * len(chosen_word_list) # se crea lista para mostrar despues como _ _ _ ...
+    letter_index_dict = {}
+    for idx, letter in enumerate(word):
+        if not letter_index_dict.get(letter):
+            letter_index_dict[letter] = []
+        letter_index_dict[letter].append(idx) # Se crea un diccionario que contiene como llaves las letra de la palabra y como valor el indice.
+   
    
 
 def run():
@@ -30,9 +36,7 @@ def run():
 
     """)
     word = get_work()
-    print(word)
-    print(len(word))
-    # hangman_game(word)
+    hangman_game(word)
     # while input('Want to play again Y/N: ').upper() == 'Y':
     #      word = get_work()
     #      hangman_game(word)
