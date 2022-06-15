@@ -24,30 +24,43 @@ def hangman_game(word):
         letter_index_dict[letter].append(idx) # Se crea un diccionario que contiene como llaves las letra de la palabra y como valor el indice.
 
     while True:
-        os.system('cls')  
-        print('Guess the word....')
-        for element in chosen_word_list_underscore:
-            print(element + ' ', end='')
-        print("\n")
-   
-
-def run():
-    print("""
+        os.system('clear')  
+        print("""
 
                                                        HANGMAN GAME 
 
-    Welcome to the hangman game. 
+        Welcome to the hangman game. 
 
-    You have to guess the word to win  
+        You have to guess the word to win  
 
-    Good look !!!!!   😆😆😆
+        Good look !!!!!   😆😆😆
 
-    """)
+        """)
+        for element in chosen_word_list_underscore:
+            print('word: ' element, end= '')  # sirve para imprimir los _ de forma horizontal
+        print("\n")
+
+        letter = input('Enter a letter: ').upper().strip()
+        assert letter.isalpha(), 'you can only enter a letter, please (❁´◡`❁)'
+
+        if letter in chosen_word_list:
+            for idx in letter_index_dict[letter]:
+                chosen_word_list_underscore[idx] = letter # Se remplaza la posicion de la letra si es correcta
+        
+        if ' _ ' not in chosen_word_list_underscore:
+            os.system('clear')
+            print('Congratulations you win, the word was: ', word)
+            break
+
+     
+def run():
+    
+    
     word = get_work()
     hangman_game(word)
-    # while input('Want to play again Y/N: ').upper() == 'Y':
-    #      word = get_work()
-    #      hangman_game(word)
+    while input('Want to play again Y/N: ').upper() == 'Y':
+         word = get_work()
+         hangman_game(word)
 
 
 if __name__ == '__main__':
